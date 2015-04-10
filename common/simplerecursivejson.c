@@ -58,6 +58,8 @@ int simpleJsonProcessor(const char *data, const char *key, char* value, int size
             case '{':
             case '[': // treat array as JSON
                 if (!inString) {
+		  if (simpleJsonProcessor (found+1, key, value, size))
+		     return 1;
                   ++jsonLevel;
                 }
                 break;
